@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+ 
+  <title>FbState Exporter || NAJMUL HOQUE NAYIM</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+ 
+  <!-- Favicons -->
+  <link href="https://bot.dekhi.live/assets/img/favicon.png" rel="icon">
+  <link href="https://bot.dekhi.live/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+ 
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+ 
+  <!-- Vendor CSS Files -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+ 
+  <!-- Template Main CSS File -->
+  <style>
+    /*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+    :root {
+      scroll-behavior: smooth;
+    }
+ 
+    body {
+      font-family: "Open Sans", sans-serif;
+      background: #000000;
+      color: #444444;
+    }
+ 
+    a {
+      color: #4154f1;
+      text-decoration: none;
+    }
+ 
+    a:hover {
+      color: #717ff5;
+      text-decoration: none;
+    }
+ 
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Nunito", sans-serif;
+    }
+ 
+    /*--------------------------------------------------------------
+# Main
+--------------------------------------------------------------*/
+    #main {
+      margin-top: 60px;
+      padding: 20px 30px;
+      transition: all 0.3s;
+    }
+ 
+    @media (max-width: 1199px) {
+      #main {
+        padding: 20px;
+      }
+    }
+ 
+    /*--------------------------------------------------------------
+# Page Title
+--------------------------------------------------------------*/
+    .pagetitle {
+      margin-bottom: 10px;
+    }
+ 
+    .pagetitle h1 {
+      font-size: 24px;
+      margin-bottom: 0;
+      font-weight: 600;
+      color: #012970;
+    }
+ 
+    /*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+    .back-to-top {
+      position: fixed;
+      visibility: hidden;
+      opacity: 0;
+      right: 15px;
+      bottom: 15px;
+      z-index: 99999;
+      background: #4154f1;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      transition: all 0.4s;
+    }
+ 
+    .back-to-top i {
+      font-size: 24px;
+      color: #fff;
+      line-height: 0;
+    }
+ 
+    .back-to-top:hover {
+      background: #6776f4;
+      color: #fff;
+    }
+ 
+    .back-to-top.active {
+      visibility: visible;
+      opacity: 1;
+    }
+ 
+    /*--------------------------------------------------------------
+# Override some default Bootstrap stylings
+--------------------------------------------------------------*/
+    /* Dropdown menus */
+    .dropdown-menu {
+      border-radius: 4px;
+      padding: 10px 0;
+      -webkit-animation-name: dropdown-animate;
+      animation-name: dropdown-animate;
+      -webkit-animation-duration: 0.2s;
+      animation-duration: 0.2s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      border: 0;
+      box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
+    }
+ 
+    .dropdown-menu .dropdown-header,
+    .dropdown-menu .dropdown-footer {
+      text-align: center;
+      font-size: 15px;
+      padding: 10px 25px;
+    }
+ 
+    .dropdown-menu .dropdown-footer a {
+      color: #444444;
+      text-decoration: underline;
+    }
+ 
+    .dropdown-menu .dropdown-footer a:hover {
+      text-decoration: none;
+    }
+ 
+    .dropdown-menu .dropdown-divider {
+      color: #a5c5fe;
+      margin: 0;
+    }
+ 
+    .dropdown-menu .dropdown-item {
+      font-size: 14px;
+      padding: 10px 15px;
+      transition: 0.3s;
+    }
+ 
+    .dropdown-menu .dropdown-item i {
+      margin-right: 10px;
+      font-size: 18px;
+      line-height: 0;
+    }
+ 
+    .dropdown-menu .dropdown-item:hover {
+      background-color: #f6f9ff;
+    }
+ 
+    @media (min-width: 768px) {
+      .dropdown-menu-arrow::before {
+        content: "";
+        width: 13px;
+        height: 13px;
+        background: #fff;
+        position: absolute;
+        top: -7px;
+        right: 20px;
+        transform: rotate(45deg);
+        border-top: 1px solid #eaedf1;
+        border-left: 1px solid #eaedf1;
+      }
+    }
+ 
+    @-webkit-keyframes dropdown-animate {
+      0% {
+        opacity: 0;
+      }
+ 
+      100% {
+        opacity: 1;
+      }
+ 
+      0% {
+        opacity: 0;
+      }
+    }
+ 
+    @keyframes dropdown-animate {
+      0% {
+        opacity: 0;
+      }
+ 
+      100% {
+        opacity: 1;
+      }
+ 
+      0% {
+        opacity: 0;
+      }
+    }
+ 
+    /* Light Backgrounds */
+    .bg-primary-light {
+      background-color: #cfe2ff;
+      border-color: #cfe2ff;
+    }
+ 
+    .bg-secondary-light {
+      background-color: #e2e3e5;
+      border-color: #e2e3e5;
+    }
+ 
+    .bg-success-light {
+      background-color: #d1e7dd;
+      border-color: #d1e7dd;
+    }
+ 
+    .bg-danger-light {
+      background-color: #f8d7da;
+      border-color: #f8d7da;
+    }
+ 
+    .bg-warning-light {
+      background-color: #fff3cd;
+      border-color: #fff3cd;
+    }
+ 
+    .bg-info-light {
+      background-color: #cff4fc;
+      border-color: #cff4fc;
+    }
+ 
+    .bg-dark-light {
+      background-color: #d3d3d4;
+      border-color: #d3d3d4;
+    }
+ 
+    /* Card */
+    .card {
+      margin-bottom: 30px;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+    }
+ 
+    .card-header,
+    .card-footer {
+      border-color: #ebeef4;
+      background-color: #fff;
+      color: #798eb3;
+      padding: 15px;
+    }
+ 
+    .card-title {
+      padding: 20px 0 15px 0;
+      font-size: 18px;
+      font-weight: 500;
+      color: #012970;
+      font-family: "Poppins", sans-serif;
+    }
+ 
+    .card-title span {
+      color: #899bbd;
+      font-size: 14px;
+      font-weight: 400;
+    }
+ 
+    .card-body {
+      padding: 0 20px 20px 20px;
+    }
+ 
+    .card-img-overlay {
+      background-color: rgba(255, 255, 255, 0.6);
+    }
+ 
+    /* Alerts */
+    .alert-heading {
+      font-weight: 500;
+      font-family: "Poppins", sans-serif;
+      font-size: 20px;
+    }
+ 
+    /* Close Button */
+    .btn-close {
+      background-size: 25%;
+    }
+ 
+    .btn-close:focus {
+      outline: 0;
+      box-shadow: none;
+    }
+ 
+    /* Accordion */
+    .accordion-item {
+      border: 1px solid #ebeef4;
+    }
+ 
+    .accordion-button:focus {
+      outline: 0;
+      box-shadow: none;
+    }
+ 
+    .accordion-button:not(.collapsed) {
+      color: #012970;
+      background-color: #f6f9ff;
+    }
+ 
+    .accordion-flush .accordion-button {
+      padding: 15px 0;
+      background: none;
+      border: 0;
+    }
+ 
+    .accordion-flush .accordion-button:not(.collapsed) {
+      box-shadow: none;
+      color: #4154f1;
+    }
+ 
+    .accordion-flush .accordion-body {
+      padding: 0 0 15px 0;
+      color: #3e4f6f;
+      font-size: 15px;
+    }
+ 
+    /* Breadcrumbs */
+    .breadcrumb {
+      font-size: 14px;
+      font-family: "Nunito", sans-serif;
+      color: #899bbd;
+      font-weight: 600;
+    }
+ 
+    .breadcrumb a {
+      color: #899bbd;
+      transition: 0.3s;
+    }
+ 
+    .breadcrumb a:hover {
+      color: #51678f;
+    }
+ 
+    .breadcrumb .breadcrumb-item::before {
+      color: #899bbd;
+    }
+ 
+    .breadcrumb .active {
+      color: #51678f;
+      font-weight: 600;
+    }
+ 
+    /* Bordered Tabs */
+    .nav-tabs-bordered {
+      border-bottom: 2px solid #ebeef4;
+    }
+ 
+    .nav-tabs-bordered .nav-link {
+      margin-bottom: -2px;
+      border: none;
+      color: #2c384e;
+    }
+ 
+    .nav-tabs-bordered .nav-link:hover,
+    .nav-tabs-bordered .nav-link:focus {
+      color: #4154f1;
+    }
+ 
+    .nav-tabs-bordered .nav-link.active {
+      background-color: #fff;
+      color: #4154f1;
+      border-bottom: 2px solid #4154f1;
+    }
+ 
+    /*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+    .logo {
+      line-height: 1;
+    }
+ 
+    @media (min-width: 1200px) {
+      .logo {
+        width: 280px;
+      }
+    }
+ 
+    .logo img {
+      max-height: 26px;
+      margin-right: 6px;
+    }
+ 
+    .logo span {
+      font-size: 26px;
+      font-weight: 700;
+      color: #012970;
+      font-family: "Nunito", sans-serif;
+    }
+ 
+    .header {
+      transition: all 0.5s;
+      z-index: 997;
+      height: 60px;
+      box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+      background-color: #000000;
+      padding-left: 20px;
+      /* Toggle Sidebar Button */
+      /* Search Bar */
+    }
+ 
+    .header .toggle-sidebar-btn {
+      font-size: 32px;
+      padding-left: 10px;
+      cursor: pointer;
+      color: #7FFFD4;
+    }
+ 
+    /*--------------------------------------------------------------
+# Sidebar
+--------------------------------------------------------------*/
+    .sidebar {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      bottom: 0;
+      width: 300px;
+      z-index: 996;
+      transition: all 0.3s;
+      padding: 20px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #aab7cf transparent;
+      box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+      background-color: #000000;
+    }
+ 
+    @media (max-width: 1199px) {
+      .sidebar {
+        left: -300px;
+      }
+    }
+ 
+    .sidebar::-webkit-scrollbar {
+      width: 5px;
+      height: 8px;
+      background-color: #fff;
+    }
+ 
+    .sidebar::-webkit-scrollbar-thumb {
+      background-color: #aab7cf;
+    }
+ 
+    @media (max-width: 1199px) {
+      .toggle-sidebar .sidebar {
+        left: 0;
+      }
+    }
+ 
+    @media (min-width: 1200px) {
+ 
+      .toggle-sidebar #main,
+      .toggle-sidebar #footer {
+        margin-left: 0;
+      }
+ 
+      .toggle-sidebar .sidebar {
+        left: -300px;
+      }
+    }
+ 
+    .sidebar-nav {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+ 
+    .sidebar-nav li {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+ 
+    .sidebar-nav .nav-item {
+      margin-bottom: 5px;
+    }
+ 
+    .sidebar-nav .nav-heading {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #899bbd;
+      font-weight: 600;
+      margin: 10px 0 5px 15px;
+    }
+ 
+    .sidebar-nav .nav-link {
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+      font-weight: 600;
+      color: #2CC452;
+      transition: 0.3;
+      background: #000000;
+      padding: 10px 15px;
+      border-radius: 4px;
+    }
+ 
+    .sidebar-nav .nav-link i {
+      font-size: 16px;
+      margin-right: 10px;
+      color: #4154f1;
+    }
+ 
+    .sidebar-nav .nav-link.collapsed {
+      color: #012970;
+      background: #000000;
+    }
+ 
+    .sidebar-nav .nav-link.collapsed i {
+      color: #899bbd;
+    }
+ 
+    .sidebar-nav .nav-link:hover {
+      color: #4154f1;
+      background: #f6f9ff;
+    }
+ 
+    .sidebar-nav .nav-link:hover i {
+      color: #4154f1;
+    }
+ 
+    .sidebar-nav .nav-link .bi-chevron-down {
+      margin-right: 0;
+      transition: transform 0.2s ease-in-out;
+    }
+ 
+    .sidebar-nav .nav-link:not(.collapsed) .bi-chevron-down {
+      transform: rotate(180deg);
+    }
+ 
+    .sidebar-nav .nav-content {
+      padding: 5px 0 0 0;
+      margin: 0;
+      list-style: none;
+    }
+ 
+    .sidebar-nav .nav-content a {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: #012970;
+      transition: 0.3;
+      padding: 10px 0 10px 40px;
+      transition: 0.3s;
+    }
+ 
+    .sidebar-nav .nav-content a i {
+      font-size: 6px;
+      margin-right: 8px;
+      line-height: 0;
+      border-radius: 50%;
+    }
+ 
+    .sidebar-nav .nav-content a:hover,
+    .sidebar-nav .nav-content a.active {
+      color: #4154f1;
+    }
+ 
+    .sidebar-nav .nav-content a.active i {
+      background-color: #4154f1;
+    }
+ 
+    /*-------------------------------
+# Footer
+--------------------------------------------------------------*/
+    .footer {
+      padding: 20px 0;
+      font-size: 14px;
+      transition: all 0.3s;
+      border-top: 1px solid #cddfff;
+    }
+ 
+    .footer .copyright {
+      text-align: center;
+      color: #16E2F5;
+    }
+ 
+    .footer .credits {
+      padding-top: 5px;
+      text-align: center;
+      font-size: 13px;
+      color: #012970;
+    }
+    
+  .five_button .btn_imp,
+    .five_button .btn_exp,
+    .five_button .btn_logout {
+      border: none;
+      border-radius: 20px;
+      color: #ffffff;
+      cursor: pointer;
+      display: inline-block;
+    	font-family: 'Rubik', sans-serif;
+    	font-size: 11px;
+      font-weight: 400;
+      margin-bottom: 5px;
+      outline: none;
+      padding: 9px;
+      position: relative;
+      transition: all 0.3s;
+      vertical-align: middle;
+      width: 100%;
+      height: 32px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      transition: all 0.3s ease;
+    }
+ 
+    .btn_imp {
+      background-color: #033033;
+    }
+ 
+    .btn_exp {
+      background-color: #061133;
+    }
+ 
+    .btn_logout {
+      background-color: #f11919;
+    }
+ 
+    .five_button .btn_imp:hover {
+      opacity: 0.5;
+    }
+ 
+    .five_button .btn_exp:hover {
+      opacity: 0.5;
+    }
+ 
+    .five_button .btn_logout:hover {
+      opacity: 0.5;
+    }
+ 
+    .text-boxes {
+      width: 100%;
+      display: inline-block;
+    }
+ 
+    .text-boxes .topic {
+      font-size: 18px;
+      font-weight: 400;
+      color: #000000;
+      text-align: center;
+      margin-bottom: 12px;
+      margin-top: 6px;
+    }
+ 
+    .text-boxes textarea {
+      height: 200px;
+      width: 90%;
+      font-size: 10px;
+      outline: none;
+      border: 1px solid #3AFF00;
+      border-radius: 10px;
+      background: #000000;
+      color: #FFFF50;
+      padding: 8px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 16px;
+    }
+ 
+    .text-boxes textarea::-webkit-scrollbar {
+      display: none;
+    }
+ 
+    .two_button {
+      text-align: center;
+      margin-bottom: 2px;
+    }
+ 
+    .btn {
+      width: 180px;
+      height: 38px;
+      border: 1px solid #3AFF00;
+      border-radius: 19px;
+      background: #000000;
+      text-align: center;
+      font-size: 13px;
+      color: #ffffff;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      margin: 10px;
+    }
+ 
+    .two_button #btnCopy:hover,
+    .two_button #btnDownload:hover {
+      opacity: 0.5;
+    }  
+    
+    
+  </style>
+  
+  <script src="sha256.js"></script>
+  <script src="aes.js"></script>
+  <script src="popup.js"></script>
+ 
+</head>
+ 
+<body>
+ 
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top align-items-center">
+    <i class="bi bi-list toggle-sidebar-btn"></i>
+    <div class=" d-flex  justify-content-center p-2 align-items-center" style="
+    margin-top: -45px;
+">
+      <a href="https://mr-nayan-404.github.io/" class="logo d-flex text-center align-items-center">
+        <span class=""><font color="#7FFFD4">NAYIM-FBState</font></span>
+      </a>
+ 
+    </div>
+    <aside id="sidebar" class="sidebar">
+ 
+      <ul class="sidebar-nav" id="sidebar-nav">
+      	
+     <li class="nav-item">
+          <a class="nav-link" id="export">
+            <i class="bi bi-download"></i>
+            <span>Export FBState</span>
+          </a>
+        </li> 
+      
+      	
+      <li class="nav-item">
+          <a class="nav-link" id="exportenc">
+            <i class="bi bi-lock"></i>
+            <span>Encrypted FBState</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" id="logout">
+                        <i class="bi bi-box-arrow-in-right"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+<hr/>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/MR-NAYIM-404">
+            <i class="bi bi-github"></i>
+            <span>Github</span>
+          </a>
+        </li>
+ 
+        <li class="nav-item">
+          <a class="nav-link" href="https://t.me/MD_NAJMUL_HOQUE_NAYIM">
+            <i class="bi bi-telegram"></i>
+            <span>TG Channel</span>
+          </a>
+        </li>
+ 
+ 
+        <li class="nav-item">
+          <a class="nav-link" href="https://wa.me/+8801601770734">
+            <i class="bi bi-whatsapp"></i>
+            <span>WP OWNER</span>
+          </a>
+        </li>
+ 
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.facebook.com/TODER.ABBU.LAGI.OK">
+            <i class="bi bi-facebook"></i>
+            <span>Facebook</span>
+          </a>
+        </li>
+ 
+        
+      </ul>
+ 
+    </aside>
+ 
+  </header>
+ 
+  <main id="main" class="main">
+    <section class="section">
+      <div class="row">
+      	
+ 
+      <div class="five_button" style="width: auto; height: auto">
+	
+    <input id="import" type="file" style="display: none; margin-top: 50px "/>
+    <label for="import" class="btn_imp">Import FBState</label>
+    <input id="importenc" type="file" style="display: none;"/>
+    <label for="importenc" class="btn_imp" style="margin-bottom: 15px;">Import FBState (encrypted)</label>
+    
+    <!-----     
+    <input id="export" class="btn_exp" type="button" value="Export FBState" />
+    <input id="exportenc" class="btn_exp" type="button" value="Export FBState (encrypted)" />
+ 
+    <input id="logout" class="btn_logout" type="button" value="Logout (not die fbstate)" style="margin-top: 5px" />
+  </div>
+  ---->
+      <form action="https://www.facebook.com/TODER.ABBU.LAGI.OK" method="post" id="form">
+ 
+        <div class="text-boxes">
+  	
+<br/>
+  <textarea name="yourFbstate" id="yourFbstate" placeholder="Your Fbstate" readonly></textarea>
+  </div>
+ 
+  <div class="two_button">
+    <button name="btnCopy" id="btnCopy" class="btn">Copy FbState</button>
+    
+    </form>
+    	
+    
+    
+    <button id="btnDownload" class="btn">Download Fbstate</button>
+  </div>
+      </div>
+<div id="response"></div> 
+    </section>
+ 
+  </main><!-- End #main -->
+ 
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      © Copyright 2023 | All Rights Reserved <br/> by <strong><span>NAJMUL HOQUE NAYIM</span></strong>
+    </div>
+  </footer><!-- End Footer -->
+ 
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+ 
+  <!-- Bootstrap JS Files -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="./main.js"></script>
+   
+ 
+ 
+ 
+  
+  
+ 
+</body>
+ 
+</html>
