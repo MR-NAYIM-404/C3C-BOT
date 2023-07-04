@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">  
+  <item 
+     android:icon="@7F07009E" 
+     android:id="@7F0900FB" 
+     android:title="@7F110052"></item>  
+  <item 
+     android:icon="@7F070071" 
+     android:id="@7F09001D" 
+     android:title="@7F11001B"></item>  
+  <item 
+     android:icon="@7F0700F7" 
+     android:id="@7F090188" 
+     android:title="@7F1100C8"></item>  
+  <item 
+     android:icon="@7F070092" 
+     android:id="@7F09009A" 
+     android:title="@7F110041"></item>  
+  <item 
+     android:icon="@7F070095" 
+     android:id="@7F0900A9" 
+     android:title="@7F110042" 
+     app:actionLayout="@7F0C0080"></item>  
+  <group> 
+    <item 
+       android:icon="@7F0700FB" 
+       android:id="@7F0901B2" 
+       android:title="@7F1100D4"></item>  
+    <item 
+       android:icon="@7F0700F8" 
+       android:id="@7F090190" 
+       android:title="@7F1100CB"></item>  
+    <item 
+       android:icon="@7F0700AF" 
+       android:id="@7F09011E" 
+       android:title="@7F110063"></item> 
+  </group> 
+</menu>
